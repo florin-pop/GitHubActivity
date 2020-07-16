@@ -11,6 +11,10 @@ Inspired by https://github.com/JustinFincher/GitHubContributionsiOS
 
 <img src="Screenshots/contributions_calendar.png" width="300">
 
+## Dark mode
+
+<img src="Screenshots/dark_mode.png" width="300">
+
 ## Configuration
 
 <img src="Screenshots/configuration.png" width="300">
