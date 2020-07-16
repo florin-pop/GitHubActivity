@@ -16,6 +16,12 @@ struct ActivityView: View {
     @State private var toDate: Date = Date().addingTimeInterval(60*60*24*31)
     @EnvironmentObject var configuration: Configuration
     
+    let day: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d"
+        return formatter
+    }()
+    
     var body: some View {
         Group {
             KalendarView(fromDate: fromDate, toDate: toDate, scrollToBottom: true, selection: self.selection) { date in
@@ -61,7 +67,6 @@ private extension Color {
 
 private let dateFormatter: DateFormatter = {
     let _formatter =  DateFormatter()
-    _formatter.timeZone = TimeZone(identifier: "UTC")
     _formatter.dateFormat = "yyyy-MM-dd"
     return _formatter
 }()
