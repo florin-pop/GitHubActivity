@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "KalendarView",
+        "repositoryURL": "https://github.com/florin-pop/KalendarView",
+        "state": {
+          "branch": "master",
+          "revision": "fea4b9f846ba304bfb01de47e5a1bfc0f2616902",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
