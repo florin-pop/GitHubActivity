@@ -6,10 +6,8 @@
 //  Copyright © 2020 Florin Pop. All rights reserved.
 //
 
-
 import Combine
 import SwiftUI
-
 
 struct ConfigurationView: View {
     @State private var loading: Bool = false
@@ -17,27 +15,26 @@ struct ConfigurationView: View {
     @State private var user: String = ""
     @State private var goal: Float = 5
     @EnvironmentObject var configuration: Configuration
-    
+
     var body: some View {
         Group {
             VStack {
                 Text("Configuration")
-                
-                VStack (alignment: .center) {
-                    HStack (alignment: .firstTextBaseline) {
+
+                VStack(alignment: .center) {
+                    HStack(alignment: .firstTextBaseline) {
                         TextField("GitHub user handle", text: $user).autocapitalization(.none)
-                        .onReceive(configuration.$user) { self.user = $0 }
+                            .onReceive(configuration.$user) { self.user = $0 }
                     }
                     HStack {
                         Text("Daily contributions")
-                        Slider(value: $goal, in: 1...50, step: 1)
-                        .onReceive(configuration.$goal) { self.goal = $0 }
+                        Slider(value: $goal, in: 1 ... 50, step: 1)
+                            .onReceive(configuration.$goal) { self.goal = $0 }
                     }
                     Text("\(Int(goal))")
                     Spacer()
                     Text(error).foregroundColor(.red)
                     Spacer()
-                    
                 }
             }
             Button(action: {

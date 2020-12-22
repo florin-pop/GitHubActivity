@@ -16,6 +16,7 @@ class Configuration: ObservableObject {
             UserDefaults.standard.synchronize()
         }
     }
+
     @Published var isConfigured: Bool
     @Published var goal: Float = 5 {
         didSet {
@@ -23,13 +24,14 @@ class Configuration: ObservableObject {
             UserDefaults.standard.synchronize()
         }
     }
+
     @Published var contributions: [String: Contribution]!
-    
+
     init() {
         if let goal = UserDefaults.standard.value(forKey: "contributions.goal") as? Float {
             self.goal = goal
         }
-        
+
         if let user = UserDefaults.standard.value(forKey: "github.user") as? String {
             self.isConfigured = true
             self.user = user

@@ -6,22 +6,21 @@
 //  Copyright © 2020 Florin Pop. All rights reserved.
 //
 
-import SwiftUI
 import KalendarView
-
+import SwiftUI
 
 struct ActivityView: View {
     @ObservedObject var selection = KalendarSelection()
-    @State private var fromDate: Date = Date().addingTimeInterval(-60*60*24*365)
-    @State private var toDate: Date = Date().addingTimeInterval(60*60*24*31)
+    @State private var fromDate = Date().addingTimeInterval(-60*60*24*365)
+    @State private var toDate = Date().addingTimeInterval(60*60*24*31)
     @EnvironmentObject var configuration: Configuration
-    
+
     let day: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "d"
         return formatter
     }()
-    
+
     var body: some View {
         Group {
             KalendarView(fromDate: fromDate, toDate: toDate, scrollToBottom: true, selection: self.selection) { date in
@@ -32,8 +31,8 @@ struct ActivityView: View {
                     endColor: Color.ringEndColor,
                     thickness: 4
                 )
-                    .animation(.easeOut)
-                    .frame(width: 32, height: 32)
+                .animation(.easeOut)
+                .frame(width: 32, height: 32)
             }.sheet(isPresented: .constant(!configuration.isConfigured)) {
                 ConfigurationView().environmentObject(self.configuration)
             }
@@ -42,17 +41,10 @@ struct ActivityView: View {
             }
         }
     }
-    
-    private func getColor(date: Date) -> Color {
-        guard self.configuration.contributions != nil else { return .white }
-        
-        let contribution = self.configuration.contributions[dateFormatter.string(from: date)]
-        return contribution?.color ?? .white
-    }
-    
+
     private func getPercentage(date: Date) -> Double {
         guard self.configuration.contributions != nil else { return 0.0 }
-        
+
         let contribution = self.configuration.contributions[dateFormatter.string(from: date)]
         let percentage = Double(contribution?.count ?? 0) / Double(self.configuration.goal)
         return percentage
@@ -66,7 +58,7 @@ private extension Color {
 }
 
 private let dateFormatter: DateFormatter = {
-    let _formatter =  DateFormatter()
+    let _formatter = DateFormatter()
     _formatter.dateFormat = "yyyy-MM-dd"
     return _formatter
 }()

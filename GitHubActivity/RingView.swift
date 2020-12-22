@@ -13,7 +13,6 @@
 //  - simplified RingView by removing currentPercentage
 //  - remove animation from RingView, animation can be controlled upon usage
 
-
 import SwiftUI
 
 struct RingView: View {
@@ -95,7 +94,6 @@ struct RingTipShape: Shape {
         get { return currentPercentage }
         set { currentPercentage = newValue }
     }
-    
 }
 
 struct RingBackgroundShape: Shape {
